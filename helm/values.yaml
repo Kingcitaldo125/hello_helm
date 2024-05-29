@@ -23,7 +23,7 @@ securityContext: {}
 configMap:
   name: hello-helm-config-map
   key: "WORLD_VALUE"
-  value: "ASDF"
+  value: "WORLD"
 
 ingress:
   enabled: false
