@@ -1,0 +1,60 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-helm
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: hello-helm
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: hello-helm
+    spec:
+      containers:
+      - name: base
+        image: hello_world:latest
+        imagePullPolicy: Never
+        command: [ "http-server" ]
+        env:
+          - name: VALUE
+            valueFrom:
+              configMapKeyRef:
+                name: hello-config-map
+                key: world_value
+        volumeMounts:
+          - name: environment-config
+            mountPath: /config
+            readOnly: true
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+      volumes:
+        - name: environment-config
+          configMap:
+            name: hello-config-map
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-service
+  labels:
+    app.kubernetes.io/name: hello-helm
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: hello-helm
+  ports:
+    - port: 8080
+      targetPort: 8080
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-config-map
+data:
+  world_value: "WORLD"
