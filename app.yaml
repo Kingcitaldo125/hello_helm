@@ -15,11 +15,11 @@ spec:
     spec:
       containers:
       - name: base
-        image: hello_world:latest
+        image: hello-helm:latest
         imagePullPolicy: Never
-        command: [ "http-server" ]
+        command: [ "node", "express_app.js" ]
         env:
-          - name: VALUE
+          - name: WORLD_VALUE
             valueFrom:
               configMapKeyRef:
                 name: hello-config-map
