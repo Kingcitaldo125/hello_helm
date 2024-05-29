@@ -1,7 +1,7 @@
 #!/bin/bash
 
-docker save -o hello.tar hello_world:latest
+docker save -o hello-helm.tar hello-helm:latest
 
-sudo k3s ctr i import hello.tar
+sudo k3s ctr i import hello-helm.tar
 
-rm hello.tar
+rm hello-helm.tar

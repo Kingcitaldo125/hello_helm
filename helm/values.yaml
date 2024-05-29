@@ -1,11 +1,11 @@
-# Default values for hello.
+# Default values for hello-helm.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: hello_world
+  repository: hello-helm
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
@@ -21,7 +21,7 @@ podSecurityContext: {}
 securityContext: {}
 
 configMap:
-  name: hello-config-map
+  name: hello-helm-config-map
   key: "WORLD_VALUE"
   value: "ASDF"
 
@@ -63,4 +63,4 @@ autoscaling:
   maxReplicas: 100
 
 nodeSelector:
-  app.kubernetes.io/name: hello-helm
+  app.kubernetes.io/name: hello-helm-helm

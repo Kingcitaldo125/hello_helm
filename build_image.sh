@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t hello_world:latest .
+docker build -t hello-helm:latest .
