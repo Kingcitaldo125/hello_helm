@@ -27,7 +27,7 @@ You should see something similar to the following:
 ```
 NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP          131m
-hello        NodePort    10.43.108.218   <none>        8080:30633/TCP   5m23s
+hello        NodePort    <service_ip>    <none>        8080:30633/TCP   5m23s
 ```
 
-You can then curl the cluster-ip of the `hello` service by running `10.43.108.218:8080`.
+You can then curl the cluster-ip of the `hello` service by running `<service_ip>:8080`.
